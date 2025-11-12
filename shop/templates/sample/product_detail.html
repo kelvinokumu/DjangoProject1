@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ product.name }} - Product Details
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title">{{ product.name }}</h2>
+            <h5 class="text-muted">Category: {{ product.category.name }}</h5>
+            <hr>
+            <p class="card-text">{{ product.description|default:"No description available." }}</p>
+
+            <h4 class="text-success">Price: Ksh {{ product.price }}</h4>
+
+            <p class="text-muted mt-2">
+                <small>Created: {{ product.created|date:"M d, Y" }}</small><br>
+                <small>Updated: {{ product.updated|date:"M d, Y" }}</small>
+            </p>
+
+            <a href="{% url 'product_list' %}" class="btn btn-secondary mt-3">Back to Products</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

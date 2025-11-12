@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+</head>
+<body>
+    <h2>Product List</h2>
+
+    {% if products %}
+        <table border="1" cellspacing="0" cellpadding="8">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Price (Ksh)</th>
+                    <th>Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category.name }}</td>
+                    <td>{{ product.description|default:"-" }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.created|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No products available yet.</p>
+    {% endif %}
+
+    <p>
+        <a href="{% url 'shop:add_category' %}">Add Category</a> |
+        <a href="{% url 'shop:add_product' %}">Add Product</a>
+    </p>
+</body>
+</html>

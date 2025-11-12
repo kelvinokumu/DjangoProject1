@@ -1,0 +1,13 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+<h1>Products</h1>
+<a href="{% url 'shop:product_add' %}">Add Product</a>
+<ul>
+  {% for product in products %}
+    <li>
+      <a href="{% url 'shop:product_detail' product.id %}">{{ product.name }}</a> - {{ product.price }}
+    </li>
+  {% empty %}
+    <li>No products available.</li>
+  {% endfor %}
+</ul>
